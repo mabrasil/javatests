@@ -1,4 +1,4 @@
-package javatests;
+package data_structure_tests;
 
 public class Student {
 	private String name;

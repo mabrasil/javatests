@@ -1,9 +1,9 @@
 //Related to student.java
-package javatests;
+package data_structure_tests;
 
 import java.util.Arrays;
 
-public class vetor {
+public class Vetor {
 	private Student[] students = new Student[100];
 	
 	public void add(Student student){
