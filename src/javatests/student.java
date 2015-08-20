@@ -1,6 +1,6 @@
 package javatests;
 
-public class student {
+public class Student {
 	private String name;
 	
 	public String getName(){
@@ -16,7 +16,7 @@ public class student {
 	}
 	
 	public boolean equals(Object o){
-		student other = (student)o;
+		Student other = (Student)o;
 		return this.name.equals(other.name);
 	}
 	
