@@ -13,6 +13,7 @@ public class Vetor {
 		for(int i = 0; i < this.students.length; i++){
 			if(this.students[i] == null){
 				this.students[i] = student;
+				this.studentsTotal++;
 				break;
 			}
 			
@@ -41,6 +42,10 @@ public class Vetor {
 	
 	public String toString(){
 		return Arrays.toString(students);
+	}
+	
+	public int length(){
+		return this.students.length;
 	}
 
 }

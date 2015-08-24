@@ -6,11 +6,13 @@ public class AddAtEnd {
 		Student a2 = new Student();
 		Student a3 = new Student();
 		Student a4 = new Student();
+		Student a5 = new Student();
 		
 		a1.setName("Felipe");
 		a2.setName("Viviane");
 		a3.setName("Matheus");
 		a4.setName("Murilo");
+		a5.setName("Vinicius");
 		
 		Vetor list = new Vetor();
 		
@@ -18,7 +20,9 @@ public class AddAtEnd {
 		list.add(a2);
 		list.adiciona(a3);
 		list.adiciona(a4);
+		list.adiciona(a5);
 		
 		System.out.println(list);
+		System.out.println(list.length());
 	}
 }
