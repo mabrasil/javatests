@@ -36,16 +36,29 @@ public class Vetor {
 		//implement
 	}
 	
-	public int size(){
-		//implement
+	public int length(){
+		return studentsTotal;
 	}
 	
 	public String toString(){
-		return Arrays.toString(students);
+		if (studentsTotal == 0){
+			return "[]";
+		}
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		
+		for(int i = 0; i < studentsTotal - 1; i++){
+			builder.append(this.students[i]);
+			builder.append(", ");
+		}
+		
+		builder.append(students[studentsTotal - 1]);
+		builder.append("]");
+		
+		return builder.toString();
 	}
 	
-	public int length(){
-		return this.students.length;
-	}
+
 
 }
