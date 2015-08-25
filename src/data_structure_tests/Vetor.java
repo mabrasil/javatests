@@ -59,6 +59,24 @@ public class Vetor {
 		return builder.toString();
 	}
 	
+	public boolean check(Student student){
+		for(int i = 0; i < students.length; i++){
+			if(student == students[i]){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkName(String str){
+		for(int i = 0; i < students.length; i++){
+			if(str.equals(students[i].getName())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 
 }

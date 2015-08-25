@@ -16,5 +16,11 @@ public class CheckTest {
 		
 		System.out.println(list.check(a1)); //true
 		System.out.println(list.check(a3)); //false
+		
+		//check name test \/
+		
+		System.out.println(list.checkName("Felipe")); //true
+		System.out.println(list.checkName("Vivian")); //exception
+		
 	}
 }
