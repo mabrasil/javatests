@@ -22,10 +22,15 @@ public class Vetor {
 	/* realize that the list is compressed to the left,
 	 * so the length of the list is the first null index.	
 	 */ 
-	public void adiciona(Student student){
-		this.students[this.studentsTotal] = student;
+	public void adiciona(Student student, int pos){
+		if(!validPos(pos)){
+			throw new IllegalArgumentException("Invalid Position");
+		}
+		for(int i = studentsTotal; i >= pos; i--){
+			students[i + 1] = students[i];
+		}
+		students[pos] = student;
 		studentsTotal++;
-	
 	}
 	
 	public Student gets(int pos){
@@ -36,11 +41,17 @@ public class Vetor {
 	}
 	
 	public void remove(int pos){
-		//implement
+		if(!busyPos(pos)){
+			throw new IllegalArgumentException("Invalid Position");
+		}
+		for(int i = pos; i < studentsTotal; i++){
+			students[i] = students[i + 1];
+		}
+		studentsTotal--;
 	}
 	
 	public int length(){
-		return studentsTotal;
+		return students.length;
 	}
 	
 	public String toString(){
@@ -82,6 +93,10 @@ public class Vetor {
 	
 	private boolean busyPos(int i){
 		return i >= 0 && i < studentsTotal;
+	}
+	
+	private boolean validPos(int i){
+		return i >= 0 && i <= studentsTotal;
 	}
 
 

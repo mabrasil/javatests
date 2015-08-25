@@ -18,9 +18,9 @@ public class AddAtEnd {
 		
 		list.add(a1);
 		list.add(a2);
-		list.adiciona(a3);
-		list.adiciona(a4);
-		list.adiciona(a5);
+		list.add(a3);
+		list.add(a4);
+		list.add(a5);
 		
 		System.out.println(list);
 		System.out.println(list.length());
