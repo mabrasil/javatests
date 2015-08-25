@@ -24,5 +24,15 @@ public class AddAtEnd {
 		
 		System.out.println(list);
 		System.out.println(list.length());
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(list.gets(0));
+		builder.append(" e ");
+		builder.append(list.gets(1));
+		builder.append(" se amam.");
+		
+		System.out.println(builder);
+			
+		
 	}
 }

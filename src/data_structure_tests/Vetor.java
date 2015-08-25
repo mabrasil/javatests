@@ -29,6 +29,9 @@ public class Vetor {
 	}
 	
 	public Student gets(int pos){
+		if(!busyPos(pos)){
+			throw new IllegalArgumentException("Invalid Position.");
+		}
 		return students[pos];
 	}
 	
@@ -77,6 +80,9 @@ public class Vetor {
 		return false;
 	}
 	
+	private boolean busyPos(int i){
+		return i >= 0 && i < studentsTotal;
+	}
 
 
 }
