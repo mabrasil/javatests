@@ -59,11 +59,29 @@ public class LinkedList {
 	}
 	
 	public void removeFromStart(){
+		if(!this.occupiedPos(0)){
+			throw new IllegalArgumentException("Invalid Position");
+		}
 		
+		this.first = this.first.getNext();
+		this.elementsTotal--;
+		
+		if(this.elementsTotal == 0){
+			this.last = null;
+		}
 	}
 	
 	public void removeFromEnd(){
-		
+		if(!this.occupiedPos(elementsTotal - 1)){
+			throw new IllegalArgumentException("Invalid Position");
+		}
+		if(this.elementsTotal == 1){
+			this.removeFromStart();
+		}
+		Cell antelast = this.last.getPrevious();
+		antelast.setNext(null);
+		this.last = antelast;
+		this.elementsTotal--;
 	}
 	
 	public String toString(){
