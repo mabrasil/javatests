@@ -4,16 +4,16 @@ package data_structure_tests;
 import java.util.Arrays;
 
 public class Vetor {
-	private Student[] students = new Student[100];
+	private Object[] objects = new Object[100];
 	
-	private int studentsTotal = 0;
+	private int objectsTotal = 0;
 	
 	
-	public void add(Student student){
-		for(int i = 0; i < this.students.length; i++){
-			if(this.students[i] == null){
-				this.students[i] = student;
-				this.studentsTotal++;
+	public void add(Object object){
+		for(int i = 0; i < this.objects.length; i++){
+			if(this.objects[i] == null){
+				this.objects[i] = object;
+				this.objectsTotal++;
 				break;
 			}
 			
@@ -22,60 +22,60 @@ public class Vetor {
 	/* realize that the list is compressed to the left,
 	 * so the length of the list is the first null index.	
 	 */ 
-	public void adiciona(Student student, int pos){
+	public void adiciona(Object object, int pos){
 		if(!validPos(pos)){
 			throw new IllegalArgumentException("Invalid Position");
 		}
-		for(int i = studentsTotal; i >= pos; i--){
-			students[i + 1] = students[i];
+		for(int i = objectsTotal; i >= pos; i--){
+			objects[i + 1] = objects[i];
 		}
-		students[pos] = student;
-		studentsTotal++;
+		objects[pos] = object;
+		objectsTotal++;
 	}
 	
-	public Student gets(int pos){
+	public Object gets(int pos){
 		if(!busyPos(pos)){
 			throw new IllegalArgumentException("Invalid Position.");
 		}
-		return students[pos];
+		return objects[pos];
 	}
 	
 	public void remove(int pos){
 		if(!busyPos(pos)){
 			throw new IllegalArgumentException("Invalid Position");
 		}
-		for(int i = pos; i < studentsTotal; i++){
-			students[i] = students[i + 1];
+		for(int i = pos; i < objectsTotal; i++){
+			objects[i] = objects[i + 1];
 		}
-		studentsTotal--;
+		objectsTotal--;
 	}
 	
 	public int length(){
-		return students.length;
+		return objects.length;
 	}
 	
 	public String toString(){
-		if (studentsTotal == 0){
+		if (objectsTotal == 0){
 			return "[]";
 		}
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("[");
 		
-		for(int i = 0; i < studentsTotal - 1; i++){
-			builder.append(this.students[i]);
+		for(int i = 0; i < objectsTotal - 1; i++){
+			builder.append(this.objects[i]);
 			builder.append(", ");
 		}
 		
-		builder.append(students[studentsTotal - 1]);
+		builder.append(objects[objectsTotal - 1]);
 		builder.append("]");
 		
 		return builder.toString();
 	}
 	
-	public boolean check(Student student){
-		for(int i = 0; i < students.length; i++){
-			if(student == students[i]){
+	public boolean check(Object object){
+		for(int i = 0; i < objects.length; i++){
+			if(object == objects[i]){
 				return true;
 			}
 		}
@@ -83,8 +83,8 @@ public class Vetor {
 	}
 	
 	public boolean checkName(String str){
-		for(int i = 0; i < students.length; i++){
-			if(str.equals(students[i].getName())){
+		for(int i = 0; i < objects.length; i++){
+			if(str.equals(((Student) objects[i]).getName())){
 				return true;
 			}
 		}
@@ -92,11 +92,21 @@ public class Vetor {
 	}
 	
 	private boolean busyPos(int i){
-		return i >= 0 && i < studentsTotal;
+		return i >= 0 && i < objectsTotal;
 	}
 	
 	private boolean validPos(int i){
-		return i >= 0 && i <= studentsTotal;
+		return i >= 0 && i <= objectsTotal;
+	}
+	
+	private void space(){
+		if(objectsTotal >= this.objects.length){
+			Object[] newArray = new Object[this.objects.length * 2];
+			for(int i = 0; i < this.objects.length; i++){
+				newArray[i] = objects[i];
+			}
+		objects = newArray;
+		}
 	}
 
 
