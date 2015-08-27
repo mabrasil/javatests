@@ -10,19 +10,16 @@ public class Vetor {
 	
 	
 	public void add(Object object){
-		for(int i = 0; i < this.objects.length; i++){
-			if(this.objects[i] == null){
-				this.objects[i] = object;
-				this.objectsTotal++;
-				break;
-			}
-			
-		}}
+			space();
+			objects[objectsTotal] = object;
+			objectsTotal++;
+	}
 	
 	/* realize that the list is compressed to the left,
 	 * so the length of the list is the first null index.	
 	 */ 
-	public void adiciona(Object object, int pos){
+	public void add(Object object, int pos){
+		space();
 		if(!validPos(pos)){
 			throw new IllegalArgumentException("Invalid Position");
 		}
