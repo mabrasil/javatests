@@ -20,11 +20,20 @@ public class LinkedList {
 	}
 	
 	public void add(Object element, int pos){
-		
+		if(pos == 0){
+			this.addAtStart(element);
+		}else if(pos == this.elementsTotal){
+			this.add(element);
+		}
+		Cell actual = getCell(pos - 1);
+		Cell nw = new Cell(element);
+		nw.setNext(actual.getNext());
+		actual.setNext(nw);
+		elementsTotal++;
 	}
 	
 	public Object gets(int pos){
-		return null;
+		return this.getCell(pos).getElement();
 	}
 	
 	public void remove(int pos){
@@ -55,5 +64,41 @@ public class LinkedList {
 	
 	public void removeFromEnd(){
 		
+	}
+	
+	public String toString(){
+		if(elementsTotal == 0){
+			return "[]";
+		}
+		StringBuilder builder = new StringBuilder("[");
+		Cell actual = first;
+		
+		for(int i = 0; i < this.elementsTotal - 1; i++){
+			builder.append(actual.getElement());
+			builder.append(", ");
+			actual = actual.getNext();
+		}
+		
+		builder.append(actual.getElement());
+		builder.append("]");
+		
+		return builder.toString();
+		
+	}
+	
+	private boolean occupiedPos(int pos){
+		return pos >= 0 && pos < this.elementsTotal;
+	}
+	
+	private Cell getCell(int pos){
+		if(!this.occupiedPos(pos)){
+			throw new IllegalArgumentException("Invalid Position");
+		}
+		
+		Cell actual = first;
+		for(int i = 0; i < pos; i++){
+			actual = actual.getNext();
+		}
+		return actual;
 	}
 }
