@@ -1,8 +1,6 @@
 //Related to student.java
 package data_structure_tests;
 
-import java.util.Arrays;
-
 public class Vetor {
 	private Object[] objects = new Object[100];
 	
