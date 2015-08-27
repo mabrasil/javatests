@@ -24,7 +24,7 @@ public class AddAtPosition {
 		
 		//remove test \/
 		
-		list.adiciona(a5, 1); //success!!
+		list.add(a5, 1); //success!!
 		System.out.println(list);
 		
 	}
