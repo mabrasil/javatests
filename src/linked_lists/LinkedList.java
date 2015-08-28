@@ -60,7 +60,7 @@ public class LinkedList {
 	
 	public void removeFromStart(){
 		if(!this.occupiedPos(0)){
-			throw new IllegalArgumentException("Invalid Position");
+			throw new IllegalArgumentException("Nothing to remove");
 		}
 		
 		this.first = this.first.getNext();
