@@ -3,6 +3,8 @@ package linked_lists;
 public class Cell {
 	private Cell next;
 	
+	private Cell previous;
+	
 	private Object element;
 	
 	public Cell(Cell next, Object element){
@@ -24,6 +26,14 @@ public class Cell {
 	
 	public Object getElement(){
 		return element;
+	}
+	
+	public Cell getPrevious(){
+		return this.previous;
+	}
+	
+	public void setPrevious(Cell previous){
+		this.previous = previous;
 	}
 	
 	
