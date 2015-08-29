@@ -9,12 +9,13 @@ public class LinkedList {
 	
 	public void add(Object element){
 		if(this.elementsTotal == 0){
-			this.addAtStart(element);
+			addAtStart(element);
 		}else{
 			Cell nw = new Cell(element);
 			this.last.setNext(nw);
+			nw.setPrevious(this.last);
 			this.last = nw;
-			this.elementsTotal++;
+			elementsTotal++;
 		}
 		
 	}
@@ -22,40 +23,71 @@ public class LinkedList {
 	public void add(Object element, int pos){
 		if(pos == 0){
 			this.addAtStart(element);
-		}else if(pos == this.elementsTotal){
+		}else if(pos == elementsTotal){
 			this.add(element);
+		}else{
+			Cell previous = this.getCell(pos - 1);
+			Cell next = previous.getNext();
+			Cell nw = new Cell(previous.getNext(), element);
+			nw.setPrevious(previous);
+			previous.setNext(nw);
+			next.setPrevious(nw);
+			this.elementsTotal++;
 		}
-		Cell actual = getCell(pos - 1);
-		Cell nw = new Cell(element);
-		nw.setNext(actual.getNext());
-		actual.setNext(nw);
-		elementsTotal++;
 	}
 	
-	public Object gets(int pos){
+	public Object get(int pos){
 		return this.getCell(pos).getElement();
 	}
 	
 	public void remove(int pos){
+		if(!this.occupiedPos(pos)){
+			throw new IllegalArgumentException("Invalid position");
+		}
 		
+		if(pos == elementsTotal - 1){
+			this.removeFromEnd();
+		}else if(pos == 0){
+			this.removeFromStart();
+		}else{
+			Cell previous = this.getCell(pos - 1);
+			Cell actual = previous.getNext();
+			Cell next = actual.getNext();
+			
+			previous.setNext(next);
+			next.setPrevious(previous);
+			
+			elementsTotal--;
+		}
 	}
 	
 	public int size(){
-		return 0;
+		return this.elementsTotal;
 	}
 	
-	public boolean contains(Object o){
+	public boolean contains(Object element){
+		Cell actual = this.first;
+		
+		while(actual != null){
+			if(actual.getElement().equals(element)){
+				return true;
+			}
+			actual = actual.getNext();
+		}
 		return false;
 	}
 	
 	public void addAtStart(Object element){
-		Cell nw = new Cell(this.first, element);
-		this.first = nw;
-		 if(this.elementsTotal == 0){
-			 //empty list special case
-			 this.last = this.first;
-		 }
-		 this.elementsTotal++;
+		if(elementsTotal == 0){
+			Cell nw = new Cell(element);
+			this.first = nw;
+			this.last = nw;
+		}else{
+			Cell nw = new Cell(this.first, element);
+			this.first.setPrevious(nw);
+			this.first = nw;
+		}
+		this.elementsTotal++;
 	}
 	
 	public void removeFromStart(){
@@ -119,4 +151,6 @@ public class LinkedList {
 		}
 		return actual;
 	}
+	
+	
 }
